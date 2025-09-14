@@ -7,7 +7,7 @@ class ApiClient {
     this.baseUrl = config.apiUrl || 'https://api.feedbackly.com';
     this.apiKey = config.apiKey;
     this.timeout = config.timeout || 10000;
-    
+
     // Detect development mode
     this.isDevelopmentMode = this.detectDevelopmentMode();
   }
@@ -18,18 +18,21 @@ class ApiClient {
    */
   detectDevelopmentMode() {
     // Check for common development indicators
-    const isLocalhost = typeof window !== 'undefined' && 
-      (window.location.hostname === 'localhost' || 
-       window.location.hostname === '127.0.0.1' ||
-       window.location.hostname.includes('local'));
-    
-    const isDemoKey = this.apiKey === 'demo-api-key' || 
-      this.apiKey === 'test-key' || d
+    const isLocalhost =
+      typeof window !== 'undefined' &&
+      (window.location.hostname === 'localhost' ||
+        window.location.hostname === '127.0.0.1' ||
+        window.location.hostname.includes('local'));
+
+    const isDemoKey =
+      this.apiKey === 'demo-api-key' ||
+      this.apiKey === 'test-key' ||
       !this.apiKey;
-    
-    const hasDevFlag = typeof window !== 'undefined' && 
+
+    const hasDevFlag =
+      typeof window !== 'undefined' &&
       window.location.search.includes('feedbackly-dev=true');
-    
+
     return isLocalhost || isDemoKey || hasDevFlag;
   }
 
@@ -41,11 +44,14 @@ class ApiClient {
     try {
       // In development mode, simulate successful submission
       if (this.isDevelopmentMode) {
-        console.log('🔧 Development mode: Simulating feedback submission', feedbackData);
-        return { 
-          success: true, 
+        console.log(
+          '🔧 Development mode: Simulating feedback submission',
+          feedbackData
+        );
+        return {
+          success: true,
           message: 'Feedback submitted successfully (development mode)',
-          feedbackId: `dev_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`
+          feedbackId: `dev_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
         };
       }
 
@@ -74,7 +80,10 @@ class ApiClient {
     try {
       // In development mode, just log the event
       if (this.isDevelopmentMode) {
-        console.log('🔧 Development mode: Event tracked', { eventName, eventData });
+        console.log('🔧 Development mode: Event tracked', {
+          eventName,
+          eventData,
+        });
         return { success: true, message: 'Event tracked (development mode)' };
       }
 
@@ -106,9 +115,12 @@ class ApiClient {
         return null;
       }
 
-      const response = await this.makeRequest(`/api/widget/config/${this.config.websiteId}`, {
-        method: 'GET',
-      });
+      const response = await this.makeRequest(
+        `/api/widget/config/${this.config.websiteId}`,
+        {
+          method: 'GET',
+        }
+      );
 
       return response;
     } catch (error) {
@@ -124,11 +136,11 @@ class ApiClient {
    */
   async makeRequest(endpoint, options = {}) {
     const url = `${this.baseUrl}${endpoint}`;
-    
+
     const defaultOptions = {
       headers: {
         'Content-Type': 'application/json',
-        'Accept': 'application/json',
+        Accept: 'application/json',
       },
       timeout: this.timeout,
     };
@@ -162,11 +174,11 @@ class ApiClient {
       return data;
     } catch (error) {
       clearTimeout(timeoutId);
-      
+
       if (error.name === 'AbortError') {
         throw new Error('Request timeout');
       }
-      
+
       throw error;
     }
   }
@@ -184,9 +196,11 @@ class ApiClient {
         if (i === retries - 1) {
           throw error;
         }
-        
+
         // Wait before retry (exponential backoff)
-        await new Promise(resolve => setTimeout(resolve, Math.pow(2, i) * 1000));
+        await new Promise(resolve =>
+          setTimeout(resolve, Math.pow(2, i) * 1000)
+        );
       }
     }
   }

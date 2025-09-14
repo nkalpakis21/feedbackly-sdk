@@ -10,7 +10,7 @@ const DEFAULT_CONFIG = {
   websiteId: '',
   apiUrl: 'https://api.feedbackly.com',
   timeout: 10000,
-  
+
   // Widget appearance
   theme: {
     primaryColor: '#007bff',
@@ -23,7 +23,7 @@ const DEFAULT_CONFIG = {
     headerBackgroundColor: '#f8f9fa',
     footerBackgroundColor: '#f8f9fa',
   },
-  
+
   // Widget position and size
   position: {
     bottom: '20px',
@@ -34,31 +34,32 @@ const DEFAULT_CONFIG = {
     height: '500px',
   },
   zIndex: 9999,
-  
+
   // Trigger button
   trigger: {
     icon: '💬',
     size: '60px',
     iconSize: '24px',
   },
-  
+
   // Text content
   text: {
     title: 'Share Your Feedback',
     ratingLabel: 'How would you rate your experience?',
     feedbackLabel: 'Tell us more (optional)',
-    feedbackPlaceholder: 'Share your thoughts, suggestions, or report any issues...',
+    feedbackPlaceholder:
+      'Share your thoughts, suggestions, or report any issues...',
     categoryLabel: 'Category',
     submitButton: 'Submit',
     cancelButton: 'Cancel',
   },
-  
+
   // Features
   categories: [],
   autoShow: false,
   autoShowDelay: 5000,
   showOnExit: false,
-  
+
   // User info
   user: {},
 };
@@ -77,7 +78,7 @@ export function validateConfig(config) {
   } else if (typeof config.apiKey !== 'string') {
     errors.push('API key must be a string');
   }
-  
+
   if (!config.websiteId) {
     errors.push('Website ID is required');
   } else if (typeof config.websiteId !== 'string') {
@@ -92,26 +93,44 @@ export function validateConfig(config) {
       if (!category || typeof category !== 'object') {
         errors.push(`Category at index ${index} must be an object`);
       } else if (!category.value || !category.label) {
-        errors.push(`Category at index ${index} must have 'value' and 'label' properties`);
+        errors.push(
+          `Category at index ${index} must have 'value' and 'label' properties`
+        );
       }
     });
   }
-  
-  if (config.zIndex !== undefined && (typeof config.zIndex !== 'number' || config.zIndex < 0)) {
+
+  if (
+    config.zIndex !== undefined &&
+    (typeof config.zIndex !== 'number' || config.zIndex < 0)
+  ) {
     errors.push('zIndex must be a positive number');
   }
 
-  if (config.timeout !== undefined && (typeof config.timeout !== 'number' || config.timeout < 1000)) {
+  if (
+    config.timeout !== undefined &&
+    (typeof config.timeout !== 'number' || config.timeout < 1000)
+  ) {
     errors.push('Timeout must be a number greater than 1000ms');
   }
 
-  if (config.autoShowDelay !== undefined && (typeof config.autoShowDelay !== 'number' || config.autoShowDelay < 0)) {
+  if (
+    config.autoShowDelay !== undefined &&
+    (typeof config.autoShowDelay !== 'number' || config.autoShowDelay < 0)
+  ) {
     errors.push('autoShowDelay must be a non-negative number');
   }
 
   // Theme validation
   if (config.theme) {
-    const colorFields = ['primaryColor', 'backgroundColor', 'textColor', 'borderColor', 'headerBackgroundColor', 'footerBackgroundColor'];
+    const colorFields = [
+      'primaryColor',
+      'backgroundColor',
+      'textColor',
+      'borderColor',
+      'headerBackgroundColor',
+      'footerBackgroundColor',
+    ];
     colorFields.forEach(field => {
       if (config.theme[field] && !isValidColor(config.theme[field])) {
         errors.push(`Theme ${field} must be a valid color`);
@@ -155,20 +174,34 @@ export function validateConfig(config) {
  */
 function isValidColor(color) {
   if (typeof color !== 'string') return false;
-  
+
   // Check for hex colors
   if (/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/.test(color)) return true;
-  
+
   // Check for rgb/rgba colors
   if (/^rgba?\(/.test(color)) return true;
-  
+
   // Check for hsl/hsla colors
   if (/^hsla?\(/.test(color)) return true;
-  
+
   // Check for named colors (basic set)
-  const namedColors = ['red', 'blue', 'green', 'yellow', 'orange', 'purple', 'pink', 'brown', 'black', 'white', 'gray', 'grey', 'transparent'];
+  const namedColors = [
+    'red',
+    'blue',
+    'green',
+    'yellow',
+    'orange',
+    'purple',
+    'pink',
+    'brown',
+    'black',
+    'white',
+    'gray',
+    'grey',
+    'transparent',
+  ];
   if (namedColors.includes(color.toLowerCase())) return true;
-  
+
   return false;
 }
 
@@ -179,23 +212,33 @@ function isValidColor(color) {
  */
 function isValidFontSize(fontSize) {
   if (typeof fontSize !== 'string') return false;
-  
+
   // Check for pixel values
   if (/^\d+px$/.test(fontSize)) return true;
-  
+
   // Check for em values
   if (/^\d+(\.\d+)?em$/.test(fontSize)) return true;
-  
+
   // Check for rem values
   if (/^\d+(\.\d+)?rem$/.test(fontSize)) return true;
-  
+
   // Check for percentage values
   if (/^\d+(\.\d+)?%$/.test(fontSize)) return true;
-  
+
   // Check for relative sizes
-  const relativeSizes = ['smaller', 'larger', 'xx-small', 'x-small', 'small', 'medium', 'large', 'x-large', 'xx-large'];
+  const relativeSizes = [
+    'smaller',
+    'larger',
+    'xx-small',
+    'x-small',
+    'small',
+    'medium',
+    'large',
+    'x-large',
+    'xx-large',
+  ];
   if (relativeSizes.includes(fontSize)) return true;
-  
+
   return false;
 }
 
@@ -206,22 +249,22 @@ function isValidFontSize(fontSize) {
  */
 function isValidCSSValue(value) {
   if (typeof value !== 'string') return false;
-  
+
   // Check for pixel values
   if (/^\d+px$/.test(value)) return true;
-  
+
   // Check for percentage values
   if (/^\d+(\.\d+)?%$/.test(value)) return true;
-  
+
   // Check for em values
   if (/^\d+(\.\d+)?em$/.test(value)) return true;
-  
+
   // Check for rem values
   if (/^\d+(\.\d+)?rem$/.test(value)) return true;
-  
+
   // Check for auto
   if (value === 'auto') return true;
-  
+
   return false;
 }
 
@@ -232,15 +275,19 @@ function isValidCSSValue(value) {
  */
 export function mergeConfig(userConfig) {
   const config = { ...DEFAULT_CONFIG };
-  
+
   // Deep merge nested objects
   Object.keys(userConfig).forEach(key => {
-    if (userConfig[key] && typeof userConfig[key] === 'object' && !Array.isArray(userConfig[key])) {
+    if (
+      userConfig[key] &&
+      typeof userConfig[key] === 'object' &&
+      !Array.isArray(userConfig[key])
+    ) {
       config[key] = { ...config[key], ...userConfig[key] };
     } else {
       config[key] = userConfig[key];
     }
   });
-  
+
   return config;
 }

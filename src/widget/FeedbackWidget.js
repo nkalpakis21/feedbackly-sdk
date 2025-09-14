@@ -1,5 +1,8 @@
-import { createElement, addEventListeners, removeEventListeners } from '../utils/dom';
-import { debounce } from '../utils/helpers';
+import {
+  createElement,
+  addEventListeners,
+  removeEventListeners,
+} from '../utils/dom';
 
 /**
  * Feedback Widget Component
@@ -16,7 +19,7 @@ class FeedbackWidget {
     this.rating = 0;
     this.feedbackText = '';
     this.eventListeners = null; // Store event listeners for cleanup
-    
+
     this.init();
   }
 
@@ -49,7 +52,9 @@ class FeedbackWidget {
         boxShadow: '0 4px 20px rgba(0, 0, 0, 0.15)',
         zIndex: this.config.zIndex || 9999,
         display: 'none',
-        fontFamily: this.config.theme?.fontFamily || 'system-ui, -apple-system, sans-serif',
+        fontFamily:
+          this.config.theme?.fontFamily ||
+          'system-ui, -apple-system, sans-serif',
         fontSize: this.config.theme?.fontSize || '14px',
         color: this.config.theme?.textColor || '#333333',
       },
@@ -159,7 +164,8 @@ class FeedbackWidget {
     });
 
     const ratingLabel = createElement('label', {
-      textContent: this.config.text?.ratingLabel || 'How would you rate your experience?',
+      textContent:
+        this.config.text?.ratingLabel || 'How would you rate your experience?',
       style: {
         display: 'block',
         marginBottom: '8px',
@@ -229,7 +235,9 @@ class FeedbackWidget {
 
     this.feedbackTextarea = createElement('textarea', {
       className: 'feedbackly-textarea',
-      placeholder: this.config.text?.feedbackPlaceholder || 'Share your thoughts, suggestions, or report any issues...',
+      placeholder:
+        this.config.text?.feedbackPlaceholder ||
+        'Share your thoughts, suggestions, or report any issues...',
       style: {
         width: '100%',
         minHeight: '80px',
@@ -424,20 +432,22 @@ class FeedbackWidget {
   attachEventListeners() {
     // Store event listeners for cleanup
     this.eventListeners = {
-      click: (event) => {
-        if (this.isVisible && 
-            this.widgetElement && 
-            this.triggerButton &&
-            !this.widgetElement.contains(event.target) && 
-            !this.triggerButton.contains(event.target)) {
+      click: event => {
+        if (
+          this.isVisible &&
+          this.widgetElement &&
+          this.triggerButton &&
+          !this.widgetElement.contains(event.target) &&
+          !this.triggerButton.contains(event.target)
+        ) {
           this.hide();
         }
       },
-      keydown: (event) => {
+      keydown: event => {
         if (event.key === 'Escape' && this.isVisible) {
           this.hide();
         }
-      }
+      },
     };
 
     // Add event listeners to document
@@ -471,7 +481,7 @@ class FeedbackWidget {
    */
   updateStarDisplay() {
     const stars = this.widgetElement.querySelectorAll('.feedbackly-star');
-    stars.forEach((star, index) => {
+    stars.forEach(star => {
       const starRating = parseInt(star.dataset.rating);
       star.style.color = starRating <= this.rating ? '#ffc107' : '#ddd';
     });
@@ -482,7 +492,7 @@ class FeedbackWidget {
    */
   highlightStars(rating) {
     const stars = this.widgetElement.querySelectorAll('.feedbackly-star');
-    stars.forEach((star, index) => {
+    stars.forEach(star => {
       const starRating = parseInt(star.dataset.rating);
       star.style.color = starRating <= rating ? '#ffc107' : '#ddd';
     });
@@ -500,7 +510,7 @@ class FeedbackWidget {
    */
   autoResizeTextarea() {
     this.feedbackTextarea.style.height = 'auto';
-    this.feedbackTextarea.style.height = this.feedbackTextarea.scrollHeight + 'px';
+    this.feedbackTextarea.style.height = `${this.feedbackTextarea.scrollHeight}px`;
   }
 
   /**
@@ -518,10 +528,9 @@ class FeedbackWidget {
       };
 
       await this.apiClient.submitFeedbackWithRetry(feedbackData);
-      
+
       this.showThankYouMessage();
       this.resetForm();
-      
     } catch (error) {
       console.error('Failed to submit feedback:', error);
       this.showErrorMessage();
@@ -594,10 +603,12 @@ class FeedbackWidget {
     this.widgetElement.style.display = 'block';
     this.triggerButton.style.display = 'none';
     this.isVisible = true;
-    
+
     // Focus on first input
     setTimeout(() => {
-      const firstInput = this.widgetElement.querySelector('input, textarea, select');
+      const firstInput = this.widgetElement.querySelector(
+        'input, textarea, select'
+      );
       if (firstInput) {
         firstInput.focus();
       }

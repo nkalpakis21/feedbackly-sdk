@@ -5,6 +5,27 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0] - 2025-01-14
+
+### Added
+- Emoji-based rating system with 3 intuitive options (😞 Poor, 😐 Okay, 😍 Great)
+- Modern, sleek widget design with enhanced visual appeal
+- Smart submit button that's disabled until a rating is selected
+- Improved hover effects and smooth transitions throughout the widget
+
+### Changed
+- Replaced 5-star rating system with emoji-based rating for better user experience
+- Updated widget styling with modern rounded corners (16px) and enhanced shadows
+- Improved header design with "Quick Feedback" title and better close button styling
+- Enhanced form elements with better spacing, typography, and focus states
+- Updated widget dimensions and styling for more condensed, sleek appearance
+- Improved button styling with modern design and better visual feedback
+
+### Technical
+- Updated rating system from 1-5 scale to 1-3 scale for better user engagement
+- Enhanced CSS styling with modern color palette and consistent spacing
+- Improved accessibility with better focus states and visual feedback
+
 ## [1.0.2] - 2025-01-14
 
 ### Fixed

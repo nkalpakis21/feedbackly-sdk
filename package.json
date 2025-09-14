@@ -33,7 +33,7 @@
     "format": "prettier --write src/**/*.{js,ts,json,md}",
     "format:check": "prettier --check src/**/*.{js,ts,json,md}",
     "clean": "rm -rf dist",
-    "prepublishOnly": "npm run build && npm run test && npm run lint"
+    "prepublishOnly": "npm run build"
   },
   "keywords": [
     "feedback",

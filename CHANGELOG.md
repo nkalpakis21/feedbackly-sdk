@@ -5,6 +5,24 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.0] - 2025-01-15
+
+### Added
+- Environment variable support for API URL selection (`USE_LOCAL_API`)
+- Smart API endpoint detection for development vs production environments
+- URL parameter support (`?feedbackly-local=true`) for testing local APIs
+- Comprehensive API integration documentation
+- Automatic fallback to production API when not in development mode
+
+### Changed
+- Enhanced `getApiUrl()` method with intelligent environment detection
+- Updated development mode detection to include local API usage
+- Improved API client configuration with better environment handling
+
+### Documentation
+- Added `API_INTEGRATION.md` with setup instructions and troubleshooting guide
+- Updated configuration examples for local development workflows
+
 ## [1.1.0] - 2025-01-14
 
 ### Added

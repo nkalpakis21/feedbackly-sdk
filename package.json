@@ -1,6 +1,6 @@
 {
   "name": "feedbackly-sdk",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "JavaScript SDK for Feedbackly - Easy feedback collection widget",
   "main": "dist/feedbackly.min.js",
   "module": "dist/feedbackly.esm.min.js",

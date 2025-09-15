@@ -100,3 +100,4 @@ jobs:
         asset_path: ./dist/feedbackly.d.ts
         asset_name: feedbackly.d.ts
         asset_content_type: text/plain
+

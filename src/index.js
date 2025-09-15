@@ -8,3 +8,4 @@ export default Feedbackly;
 if (typeof window !== 'undefined') {
   window.Feedbackly = Feedbackly;
 }
+

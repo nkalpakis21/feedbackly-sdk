@@ -121,3 +121,4 @@ feedbackly.init().show();
 5. **Community**: Respond to issues and feature requests
 
 The SDK is now enterprise-ready and suitable for public distribution! 🎉
+

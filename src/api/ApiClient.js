@@ -4,12 +4,44 @@
 class ApiClient {
   constructor(config) {
     this.config = config;
-    this.baseUrl = config.apiUrl || 'https://api.feedbackly.com';
+    this.baseUrl = this.getApiUrl(config);
     this.apiKey = config.apiKey;
     this.timeout = config.timeout || 10000;
 
     // Detect development mode
     this.isDevelopmentMode = this.detectDevelopmentMode();
+  }
+
+  /**
+   * Get the appropriate API URL based on configuration and environment
+   * @param {Object} config - Configuration object
+   * @returns {string} API base URL
+   */
+  getApiUrl(config) {
+    // If apiUrl is explicitly provided, use it
+    if (config.apiUrl) {
+      return config.apiUrl;
+    }
+
+    // Check for environment variables to determine API URL
+    // This works in both browser and Node.js environments
+    const isLocalDevelopment = 
+      (typeof process !== 'undefined' && process.env.NODE_ENV === 'development') ||
+      (typeof window !== 'undefined' && window.location.hostname === 'localhost') ||
+      (typeof window !== 'undefined' && window.location.hostname === '127.0.0.1') ||
+      (typeof window !== 'undefined' && window.location.hostname.includes('local'));
+
+    // Check for specific environment variable to use local API
+    const useLocalApi = 
+      (typeof process !== 'undefined' && process.env.USE_LOCAL_API === 'true') ||
+      (typeof window !== 'undefined' && window.location.search.includes('feedbackly-local=true'));
+
+    if (isLocalDevelopment && useLocalApi) {
+      return 'http://localhost:3000';
+    }
+
+    // Default to production API
+    return 'https://api.feedbackly.com';
   }
 
   /**
@@ -33,7 +65,9 @@ class ApiClient {
       typeof window !== 'undefined' &&
       window.location.search.includes('feedbackly-dev=true');
 
-    return isLocalhost || isDemoKey || hasDevFlag;
+    const isUsingLocalApi = this.baseUrl.includes('localhost:3000');
+
+    return isLocalhost || isDemoKey || hasDevFlag || isUsingLocalApi;
   }
 
   /**

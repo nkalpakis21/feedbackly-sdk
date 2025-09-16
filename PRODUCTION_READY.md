@@ -1,6 +1,6 @@
 # Production Ready Checklist ✅
 
-The Feedbackly SDK is now **production-ready** for public npm distribution. Here's what has been implemented:
+The Shiply SDK is now **production-ready** for public npm distribution. Here's what has been implemented:
 
 ## ✅ **Core Features**
 - [x] Beautiful, customizable feedback widget
@@ -16,9 +16,9 @@ The Feedbackly SDK is now **production-ready** for public npm distribution. Here
 - [x] User management functionality
 
 ## ✅ **Build & Distribution**
-- [x] UMD build for CDN usage (`feedbackly.min.js`)
-- [x] ES Module build for modern bundlers (`feedbackly.esm.min.js`)
-- [x] TypeScript definitions (`feedbackly.d.ts`)
+- [x] UMD build for CDN usage (`Shiply.min.js`)
+- [x] ES Module build for modern bundlers (`Shiply.esm.min.js`)
+- [x] TypeScript definitions (`Shiply.d.ts`)
 - [x] Source maps for debugging
 - [x] Proper package.json exports configuration
 - [x] Optimized bundle size (~35KB minified)
@@ -69,47 +69,47 @@ npm publish
 ### Package Structure
 ```
 dist/
-├── feedbackly.min.js          # UMD build for CDN
-├── feedbackly.min.js.map      # Source map
-├── feedbackly.esm.min.js      # ES Module build
-├── feedbackly.esm.min.js.map  # Source map
-└── feedbackly.d.ts            # TypeScript definitions
+├── Shiply.min.js          # UMD build for CDN
+├── Shiply.min.js.map      # Source map
+├── Shiply.esm.min.js      # ES Module build
+├── Shiply.esm.min.js.map  # Source map
+└── Shiply.d.ts            # TypeScript definitions
 ```
 
 ### Usage Examples
 
 **CDN (UMD):**
 ```html
-<script src="https://unpkg.com/feedbackly-sdk@1.0.0/dist/feedbackly.min.js"></script>
+<script src="https://unpkg.com/Shiply-sdk@1.0.0/dist/Shiply.min.js"></script>
 <script>
-  const feedbackly = new Feedbackly({
+  const Shiply = new Shiply({
     apiKey: 'your-api-key',
     websiteId: 'your-website'
   });
-  feedbackly.init().show();
+  Shiply.init().show();
 </script>
 ```
 
 **NPM (ES Modules):**
 ```javascript
-import Feedbackly from 'feedbackly-sdk';
+import Shiply from 'Shiply-sdk';
 
-const feedbackly = new Feedbackly({
+const Shiply = new Shiply({
   apiKey: 'your-api-key',
   websiteId: 'your-website'
 });
-feedbackly.init().show();
+Shiply.init().show();
 ```
 
 **NPM (CommonJS):**
 ```javascript
-const Feedbackly = require('feedbackly-sdk');
+const Shiply = require('Shiply-sdk');
 
-const feedbackly = new Feedbackly({
+const Shiply = new Shiply({
   apiKey: 'your-api-key',
   websiteId: 'your-website'
 });
-feedbackly.init().show();
+Shiply.init().show();
 ```
 
 ## 🚀 **Next Steps**

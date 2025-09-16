@@ -1,6 +1,6 @@
-# Contributing to Feedbackly SDK
+# Contributing to Shiply SDK
 
-Thank you for your interest in contributing to the Feedbackly SDK! This document provides guidelines and information for contributors.
+Thank you for your interest in contributing to the Shiply SDK! This document provides guidelines and information for contributors.
 
 ## Getting Started
 
@@ -14,8 +14,8 @@ Thank you for your interest in contributing to the Feedbackly SDK! This document
 1. Fork the repository
 2. Clone your fork:
    ```bash
-   git clone https://github.com/your-username/feedbackly-sdk.git
-   cd feedbackly-sdk
+   git clone https://github.com/your-username/Shiply-sdk.git
+   cd Shiply-sdk
    ```
 
 3. Install dependencies:

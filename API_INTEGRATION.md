@@ -1,6 +1,6 @@
 # API Integration Guide
 
-This guide explains how to configure the Feedbackly SDK to work with your local development API or production API.
+This guide explains how to configure the Shiply SDK to work with your local development API or production API.
 
 ## Environment Variables
 
@@ -12,16 +12,16 @@ The SDK considers itself in development mode when:
 - `NODE_ENV === 'development'` (Node.js environment)
 - Running on `localhost`, `127.0.0.1`, or any hostname containing `local`
 - Using demo/test API keys
-- URL contains `?feedbackly-dev=true`
+- URL contains `?Shiply-dev=true`
 
 ### API URL Selection
 
 The SDK will use the local API (`http://localhost:3000`) when:
 - In development mode AND
 - `USE_LOCAL_API=true` environment variable is set OR
-- URL contains `?feedbackly-local=true`
+- URL contains `?Shiply-local=true`
 
-Otherwise, it defaults to the production API (`https://api.feedbackly.com`).
+Otherwise, it defaults to the production API (`https://api.Shiply.com`).
 
 ## Configuration Options
 
@@ -40,10 +40,10 @@ export USE_LOCAL_API=false
 
 ### Option 2: URL Parameters
 
-Add `?feedbackly-local=true` to your page URL:
+Add `?Shiply-local=true` to your page URL:
 
 ```
-http://localhost:3000/your-page?feedbackly-local=true
+http://localhost:3000/your-page?Shiply-local=true
 ```
 
 ### Option 3: Explicit Configuration
@@ -51,7 +51,7 @@ http://localhost:3000/your-page?feedbackly-local=true
 You can always override the API URL explicitly:
 
 ```javascript
-const feedbackly = new Feedbackly({
+const Shiply = new Shiply({
   apiKey: 'your-api-key',
   websiteId: 'your-website-id',
   apiUrl: 'http://localhost:3000', // Explicitly set local API
@@ -91,7 +91,7 @@ npm start
 
 ```javascript
 // Visit your page with the local API flag
-window.location.href = 'http://localhost:3000/your-page?feedbackly-local=true';
+window.location.href = 'http://localhost:3000/your-page?Shiply-local=true';
 ```
 
 ## API Endpoints

@@ -8,7 +8,7 @@ module.exports = (env, argv) => {
     entry: './src/index.js',
     output: {
       path: path.resolve(__dirname, 'dist'),
-      filename: isProduction ? 'feedbackly.esm.min.js' : 'feedbackly.esm.js',
+      filename: isProduction ? 'shiply.esm.min.js' : 'shiply.esm.js',
       library: {
         type: 'module',
       },

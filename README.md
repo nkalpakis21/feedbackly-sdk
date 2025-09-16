@@ -1,4 +1,4 @@
-# Feedbackly SDK
+# Shiply SDK
 
 A lightweight JavaScript SDK for collecting user feedback with a beautiful, customizable widget.
 
@@ -22,17 +22,17 @@ A lightweight JavaScript SDK for collecting user feedback with a beautiful, cust
 ### CDN (Recommended)
 
 ```html
-<script src="https://cdn.feedbackly.com/sdk/feedbackly.min.js"></script>
+<script src="https://cdn.Shiply.com/sdk/Shiply.min.js"></script>
 ```
 
 ### NPM
 
 ```bash
-npm install feedbackly-sdk
+npm install Shiply-sdk
 ```
 
 ```javascript
-import Feedbackly from 'feedbackly-sdk';
+import Shiply from 'Shiply-sdk';
 ```
 
 ## Development Mode
@@ -47,19 +47,19 @@ The SDK automatically detects development environments and provides helpful feat
 Development mode is automatically enabled when:
 - Running on localhost or 127.0.0.1
 - Using demo API keys (`demo-api-key`, `test-key`)
-- Adding `?feedbackly-dev=true` to your URL
+- Adding `?Shiply-dev=true` to your URL
 
 ## Quick Start
 
 ```javascript
-// Initialize Feedbackly
-const feedbackly = new Feedbackly({
+// Initialize Shiply
+const Shiply = new Shiply({
     apiKey: 'your-api-key',
     websiteId: 'your-website-id'
 });
 
 // Initialize and show the widget
-feedbackly.init().show();
+Shiply.init().show();
 ```
 
 ## Configuration
@@ -67,13 +67,13 @@ feedbackly.init().show();
 ### Basic Configuration
 
 ```javascript
-const feedbackly = new Feedbackly({
+const Shiply = new Shiply({
     // Required
     apiKey: 'your-api-key',
     websiteId: 'your-website-id',
     
     // Optional
-    apiUrl: 'https://api.feedbackly.com',
+    apiUrl: 'https://api.Shiply.com',
     timeout: 10000,
     
     // Widget appearance
@@ -139,7 +139,7 @@ const feedbackly = new Feedbackly({
 Initialize the SDK with configuration.
 
 ```javascript
-feedbackly.init({
+Shiply.init({
     apiKey: 'your-api-key',
     websiteId: 'your-website-id'
 });
@@ -149,28 +149,28 @@ feedbackly.init({
 Show the feedback widget.
 
 ```javascript
-feedbackly.show();
+Shiply.show();
 ```
 
 #### `hide()`
 Hide the feedback widget.
 
 ```javascript
-feedbackly.hide();
+Shiply.hide();
 ```
 
 #### `toggle()`
 Toggle the feedback widget visibility.
 
 ```javascript
-feedbackly.toggle();
+Shiply.toggle();
 ```
 
 #### `setUser(userInfo)`
 Set user information for feedback context.
 
 ```javascript
-feedbackly.setUser({
+Shiply.setUser({
     id: 'user-123',
     email: 'user@example.com',
     name: 'John Doe'
@@ -181,7 +181,7 @@ feedbackly.setUser({
 Track custom events.
 
 ```javascript
-feedbackly.track('page_view', {
+Shiply.track('page_view', {
     page: '/products',
     category: 'electronics'
 });
@@ -191,7 +191,7 @@ feedbackly.track('page_view', {
 Submit feedback programmatically.
 
 ```javascript
-feedbackly.submitFeedback({
+Shiply.submitFeedback({
     rating: 5,
     text: 'Great product!',
     category: 'general'
@@ -202,14 +202,14 @@ feedbackly.submitFeedback({
 Get current configuration.
 
 ```javascript
-const config = feedbackly.getConfig();
+const config = Shiply.getConfig();
 ```
 
 #### `updateConfig(newConfig)`
 Update configuration.
 
 ```javascript
-feedbackly.updateConfig({
+Shiply.updateConfig({
     theme: {
         primaryColor: '#28a745'
     }
@@ -220,7 +220,7 @@ feedbackly.updateConfig({
 Destroy the SDK instance and clean up.
 
 ```javascript
-feedbackly.destroy();
+Shiply.destroy();
 ```
 
 ## Advanced Usage
@@ -228,7 +228,7 @@ feedbackly.destroy();
 ### Custom Styling
 
 ```javascript
-const feedbackly = new Feedbackly({
+const Shiply = new Shiply({
     apiKey: 'your-api-key',
     websiteId: 'your-website-id',
     theme: {
@@ -245,22 +245,22 @@ const feedbackly = new Feedbackly({
 
 ```javascript
 // Track when feedback is submitted
-feedbackly.track('feedback_submitted', {
+Shiply.track('feedback_submitted', {
     rating: 5,
     hasText: true,
     category: 'general'
 });
 
 // Track widget interactions
-feedbackly.track('widget_opened');
-feedbackly.track('widget_closed');
+Shiply.track('widget_opened');
+Shiply.track('widget_closed');
 ```
 
 ### Programmatic Feedback Submission
 
 ```javascript
 // Submit feedback without showing the widget
-feedbackly.submitFeedback({
+Shiply.submitFeedback({
     rating: 4,
     text: 'Good experience overall',
     category: 'general',
@@ -284,8 +284,8 @@ feedbackly.submitFeedback({
 ### Setup
 
 ```bash
-git clone https://github.com/nkalpakis21/feedbackly-sdk.git
-cd feedbackly-sdk
+git clone https://github.com/nkalpakis21/Shiply-sdk.git
+cd Shiply-sdk
 npm install
 ```
 
@@ -325,10 +325,10 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Support
 
-- 📧 Email: support@feedbackly.com
-- 📖 Documentation: https://docs.feedbackly.com
-- 🐛 Issues: https://github.com/nkalpakis21/feedbackly-sdk/issues
-- 💬 Discussions: https://github.com/nkalpakis21/feedbackly-sdk/discussions
+- 📧 Email: support@Shiply.com
+- 📖 Documentation: https://docs.Shiply.com
+- 🐛 Issues: https://github.com/nkalpakis21/Shiply-sdk/issues
+- 💬 Discussions: https://github.com/nkalpakis21/Shiply-sdk/discussions
 
 ## Changelog
 

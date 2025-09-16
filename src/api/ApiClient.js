@@ -1,5 +1,5 @@
 /**
- * API Client for communicating with Feedbackly backend
+ * API Client for communicating with Shiply backend
  */
 class ApiClient {
   constructor(config) {
@@ -34,14 +34,14 @@ class ApiClient {
     // Check for specific environment variable to use local API
     const useLocalApi = 
       (typeof process !== 'undefined' && process.env.USE_LOCAL_API === 'true') ||
-      (typeof window !== 'undefined' && window.location.search.includes('feedbackly-local=true'));
+      (typeof window !== 'undefined' && window.location.search.includes('Shiply-local=true'));
 
     if (isLocalDevelopment && useLocalApi) {
       return 'http://localhost:3000';
     }
 
     // Default to production API
-    return 'https://api.feedbackly.com';
+    return 'https://api.Shiply.com';
   }
 
   /**
@@ -63,7 +63,7 @@ class ApiClient {
 
     const hasDevFlag =
       typeof window !== 'undefined' &&
-      window.location.search.includes('feedbackly-dev=true');
+      window.location.search.includes('Shiply-dev=true');
 
     const isUsingLocalApi = this.baseUrl.includes('localhost:3000');
 

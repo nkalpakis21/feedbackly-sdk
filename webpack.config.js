@@ -9,9 +9,9 @@ module.exports = (env, argv) => {
     entry: './src/index.js',
     output: {
       path: path.resolve(__dirname, 'dist'),
-      filename: isProduction ? 'feedbackly.min.js' : 'feedbackly.js',
+      filename: isProduction ? 'shiply.min.js' : 'shiply.js',
       library: {
-        name: 'Feedbackly',
+        name: 'Shiply',
         type: 'umd',
         export: 'default',
       },

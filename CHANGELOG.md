@@ -48,7 +48,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.0.0] - 2024-01-XX
 
 ### Added
-- Initial release of Feedbackly SDK
+- Initial release of Shiply SDK
 - Beautiful, customizable feedback widget
 - Support for ratings, text feedback, and categories
 - Development mode with automatic detection

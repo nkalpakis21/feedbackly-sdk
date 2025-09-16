@@ -1,6 +1,10 @@
 #!/bin/bash
 
+<<<<<<< HEAD
 # Git Merge Script for Shiply Projects
+=======
+# Git Merge Script for Shiply SDK
+>>>>>>> develop
 # Usage: ./scripts/git-merge.sh "feature-branch-name"
 
 set -e  # Exit on any error
@@ -95,4 +99,8 @@ git push origin --delete $FEATURE_BRANCH
 print_success "Feature branch '$FEATURE_BRANCH' has been deleted!"
 
 print_success "🎉 Complete workflow finished successfully!"
+<<<<<<< HEAD
 print_status "Changes are now in both $DEV_BRANCH and main branches"
+=======
+print_status "Changes are now in both $DEV_BRANCH and main branches"
+>>>>>>> develop

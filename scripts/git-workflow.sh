@@ -1,6 +1,10 @@
 #!/bin/bash
 
+<<<<<<< HEAD
 # Git Workflow Script for Shiply Projects
+=======
+# Git Workflow Script for Shiply SDK
+>>>>>>> develop
 # Usage: ./scripts/git-workflow.sh "feature-branch-name" "commit message"
 
 set -e  # Exit on any error
@@ -67,4 +71,8 @@ print_success "Feature branch '$FEATURE_BRANCH' created and ready for changes!"
 print_warning "Make your changes, then run:"
 print_warning "  git add ."
 print_warning "  git commit -m \"$COMMIT_MESSAGE\""
+<<<<<<< HEAD
 print_warning "  ./scripts/git-workflow.sh $FEATURE_BRANCH \"$COMMIT_MESSAGE\" --merge"
+=======
+print_warning "  ./scripts/git-merge.sh $FEATURE_BRANCH"
+>>>>>>> develop

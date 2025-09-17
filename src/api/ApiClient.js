@@ -41,7 +41,7 @@ class ApiClient {
     }
 
     // Default to production API
-    return 'https://api.Shiply.com';
+    return 'https://www.shiplyai.com';
   }
 
   /**

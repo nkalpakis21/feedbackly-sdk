@@ -274,7 +274,7 @@ feedbackly.init().show();
             if (feedbackly) {
                 feedbackly.submitFeedback({
                     rating: 5,
-                    text: 'This is programmatically submitted feedback!',
+                    feedback: 'This is programmatically submitted feedback!',
                     category: 'general'
                 }).then(() => {
                     showStatus('advanced-status', 'Feedback submitted successfully!', 'success');

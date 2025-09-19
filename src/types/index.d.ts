@@ -77,7 +77,7 @@ export interface FeedbackData {
     name?: string;
     photoURL?: string;
   };
-  metadata?: Record<string, any>;
+  metadata?: Record<string, unknown>;
   timestamp?: string;
   url?: string;
   userAgent?: string;
@@ -87,13 +87,13 @@ export interface ApiResponse {
   success: boolean;
   message?: string;
   feedbackId?: string;
-  data?: any;
+  data?: unknown;
   error?: string;
 }
 
 export interface EventData {
   eventName: string;
-  eventData: Record<string, any>;
+  eventData: Record<string, unknown>;
   timestamp?: string;
   url?: string;
   userAgent?: string;
@@ -123,7 +123,7 @@ export interface FeedbacklyInstance {
   toggle(): void;
   destroy(): void;
   setUser(user: User): void;
-  track(eventName: string, eventData?: Record<string, any>): void;
+  track(eventName: string, eventData?: Record<string, unknown>): void;
   submitFeedback(feedbackData: FeedbackData): Promise<ApiResponse>;
   updateConfig(config: Partial<FeedbacklyConfig>): void;
   isInitialized(): boolean;

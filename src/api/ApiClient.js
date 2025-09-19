@@ -7,9 +7,6 @@ class ApiClient {
     this.baseUrl = this.getApiUrl(config);
     this.apiKey = config.apiKey;
     this.timeout = config.timeout || 10000;
-
-    // Detect development mode
-    this.isDevelopmentMode = this.detectDevelopmentMode();
   }
 
   /**
@@ -44,31 +41,6 @@ class ApiClient {
     return 'https://www.shiplyai.com';
   }
 
-  /**
-   * Detect if we're in development mode
-   * @returns {boolean} True if in development mode
-   */
-  detectDevelopmentMode() {
-    // Check for common development indicators
-    const isLocalhost =
-      typeof window !== 'undefined' &&
-      (window.location.hostname === 'localhost' ||
-        window.location.hostname === '127.0.0.1' ||
-        window.location.hostname.includes('local'));
-
-    const isDemoKey =
-      this.apiKey === 'demo-api-key' ||
-      this.apiKey === 'test-key' ||
-      !this.apiKey;
-
-    const hasDevFlag =
-      typeof window !== 'undefined' &&
-      window.location.search.includes('Shiply-dev=true');
-
-    const isUsingLocalApi = this.baseUrl.includes('localhost:3000');
-
-    return isLocalhost || isDemoKey || hasDevFlag || isUsingLocalApi;
-  }
 
   /**
    * Submit feedback to the API
@@ -76,19 +48,6 @@ class ApiClient {
    */
   async submitFeedback(feedbackData) {
     try {
-      // In development mode, simulate successful submission
-      if (this.isDevelopmentMode) {
-        console.log(
-          '🔧 Development mode: Simulating feedback submission',
-          feedbackData
-        );
-        return {
-          success: true,
-          message: 'Feedback submitted successfully (development mode)',
-          feedbackId: `dev_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
-        };
-      }
-
       const response = await this.makeRequest('/api/feedback', {
         method: 'POST',
         body: JSON.stringify({
@@ -112,15 +71,6 @@ class ApiClient {
    */
   async trackEvent(eventName, eventData) {
     try {
-      // In development mode, just log the event
-      if (this.isDevelopmentMode) {
-        console.log('🔧 Development mode: Event tracked', {
-          eventName,
-          eventData,
-        });
-        return { success: true, message: 'Event tracked (development mode)' };
-      }
-
       const response = await this.makeRequest('/api/events', {
         method: 'POST',
         body: JSON.stringify({

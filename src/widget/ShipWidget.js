@@ -30,7 +30,6 @@ class FeedbackWidget {
     this.createWidget();
     this.createTriggerButton();
     this.attachEventListeners();
-    this.loadWidgetConfig();
   }
 
   /**
@@ -548,19 +547,6 @@ class FeedbackWidget {
     addEventListeners(document, this.eventListeners);
   }
 
-  /**
-   * Load widget configuration from server
-   */
-  async loadWidgetConfig() {
-    try {
-      const serverConfig = await this.apiClient.getWidgetConfig();
-      if (serverConfig) {
-        this.updateConfig(serverConfig);
-      }
-    } catch (error) {
-      console.error('Failed to load widget config:', error);
-    }
-  }
 
   /**
    * Set rating

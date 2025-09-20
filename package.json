@@ -1,6 +1,6 @@
 {
   "name": "shiply-sdk",
-  "version": "1.5.1",
+  "version": "1.5.2",
   "description": "JavaScript SDK for Shiply - Easy feedback collection widget",
   "main": "dist/shiply.min.js",
   "module": "dist/shiply.esm.min.js",

@@ -1,11 +1,9 @@
-import Shiply from './core/Shiply';
+import ShiplyFeedback from './react/ShiplyFeedback';
 import './styles/main.css';
 
-// Export the main class
-export default Shiply;
+// Export the React component as default
+export default ShiplyFeedback;
 
-// Also make it available globally when loaded via script tag
-if (typeof window !== 'undefined') {
-  window.Shiply = Shiply;
-}
+// Also export as named export
+export { ShiplyFeedback };
 

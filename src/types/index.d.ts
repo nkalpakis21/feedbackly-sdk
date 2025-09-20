@@ -150,8 +150,61 @@ export interface ShiplyFeedbackProps {
   style?: React.CSSProperties;
 }
 
-// React Component Type
+// React Component Types
 export declare const ShiplyFeedback: React.FC<ShiplyFeedbackProps>;
+
+// Provider Component Props
+export interface ShiplyProviderProps {
+  apiKey: string;
+  websiteId?: string;
+  theme?: FeedbacklyConfig['theme'];
+  position?: FeedbacklyConfig['position'];
+  size?: FeedbacklyConfig['size'];
+  text?: FeedbacklyConfig['text'];
+  categories?: FeedbacklyConfig['categories'];
+  autoShow?: boolean;
+  autoShowDelay?: number;
+  onFeedbackSubmit?: (feedbackData: FeedbackData) => void;
+  onError?: (error: Error) => void;
+  children: React.ReactNode;
+}
+
+// Provider Component
+export declare const ShiplyProvider: React.FC<ShiplyProviderProps>;
+
+// Hook return type
+export interface ShiplyContextValue {
+  shiplyInstance: FeedbacklyInstance | null;
+  isInitialized: boolean;
+  error: string | null;
+  apiKey: string;
+  websiteId: string;
+  theme: FeedbacklyConfig['theme'];
+  position: FeedbacklyConfig['position'];
+  size: FeedbacklyConfig['size'];
+  text: FeedbacklyConfig['text'];
+  categories: FeedbacklyConfig['categories'];
+  autoShow: boolean;
+  autoShowDelay: number;
+  onFeedbackSubmit?: (feedbackData: FeedbackData) => void;
+  onError?: (error: Error) => void;
+}
+
+// Hook
+export declare const useShiply: () => ShiplyContextValue;
+
+// Init function
+export declare const init: (config: Partial<FeedbacklyConfig>) => FeedbacklyInstance;
+
+// Global functions
+export declare const getInstance: () => FeedbacklyInstance | null;
+export declare const show: () => void;
+export declare const hide: () => void;
+export declare const toggle: () => void;
+export declare const setUser: (user: User) => void;
+export declare const track: (eventName: string, eventData?: Record<string, unknown>) => void;
+export declare const submitFeedback: (feedbackData: FeedbackData) => Promise<ApiResponse>;
+export declare const destroy: () => void;
 
 // Default export is the React component
 declare const ShiplyFeedbackDefault: React.FC<ShiplyFeedbackProps>;

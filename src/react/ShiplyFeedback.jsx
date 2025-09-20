@@ -1,137 +1,26 @@
-import React, { useState, useEffect, useRef } from 'react';
-import Shiply from '../core/Shiply';
+import React, { useRef } from 'react';
+import { useShiply } from './ShiplyContext.jsx';
 
 /**
  * ShiplyFeedback React Component
  * A simple React component for collecting user feedback
+ * Must be used within a ShiplyProvider
  */
 const ShiplyFeedback = ({
-  apiKey,
-  websiteId,
-  theme = {},
-  position = {},
-  size = {},
-  autoShow = false,
-  autoShowDelay = 5000,
-  onFeedbackSubmit,
-  onError,
   children,
   className = '',
   style = {},
   ...props
 }) => {
-  const [shiply, setShiply] = useState(null);
-  const [isInitialized, setIsInitialized] = useState(false);
-  const [error, setError] = useState(null);
+  const { shiplyInstance, isInitialized, error } = useShiply();
   const containerRef = useRef(null);
-
-  // Generate website ID if not provided
-  const generateWebsiteId = () => {
-    if (websiteId) return websiteId;
-    
-    if (typeof window !== 'undefined' && window.location) {
-      const hostname = window.location.hostname;
-      return hostname.replace(/[^a-zA-Z0-9]/g, '-').toLowerCase();
-    }
-    
-    return 'website-' + Math.random().toString(36).substr(2, 9);
-  };
-
-  // Initialize Shiply
-  useEffect(() => {
-    if (!apiKey) {
-      const errorMsg = 'ShiplyFeedback: API key is required';
-      setError(errorMsg);
-      if (onError) onError(new Error(errorMsg));
-      return;
-    }
-
-    try {
-      const finalWebsiteId = generateWebsiteId();
-      
-      const config = {
-        apiKey,
-        websiteId: finalWebsiteId,
-        theme: {
-          primaryColor: '#007bff',
-          backgroundColor: '#ffffff',
-          textColor: '#333333',
-          borderColor: '#e1e5e9',
-          borderRadius: '8px',
-          fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
-          fontSize: '14px',
-          ...theme,
-        },
-        position: {
-          bottom: '20px',
-          right: '20px',
-          ...position,
-        },
-        size: {
-          width: '350px',
-          height: '500px',
-          ...size,
-        },
-        text: {
-          title: 'Share Your Feedback',
-          ratingLabel: 'How would you rate your experience?',
-          feedbackLabel: 'Tell us more (optional)',
-          feedbackPlaceholder: 'Share your thoughts, report bugs, or suggest improvements...',
-          categoryLabel: 'Category',
-          submitButton: 'Submit Feedback',
-          cancelButton: 'Cancel',
-        },
-        categories: [
-          { value: 'bug', label: 'Bug Report' },
-          { value: 'feature', label: 'Feature Request' },
-          { value: 'ui', label: 'UI/UX Issue' },
-          { value: 'performance', label: 'Performance Issue' },
-          { value: 'general', label: 'General Feedback' },
-        ],
-        autoShow,
-        autoShowDelay,
-        zIndex: 9999,
-      };
-
-      const shiplyInstance = new Shiply();
-      shiplyInstance.init(config);
-      
-      setShiply(shiplyInstance);
-      setIsInitialized(true);
-      setError(null);
-
-      // Auto-show if enabled
-      if (autoShow) {
-        setTimeout(() => {
-          shiplyInstance.show();
-        }, autoShowDelay);
-      }
-
-    } catch (err) {
-      const errorMsg = `Failed to initialize Shiply: ${err.message}`;
-      setError(errorMsg);
-      if (onError) onError(err);
-    }
-  }, [apiKey, websiteId, theme, position, size, autoShow, autoShowDelay, onError]);
-
-  // Handle feedback submission
-  const handleFeedbackSubmit = (feedbackData) => {
-    if (onFeedbackSubmit) {
-      onFeedbackSubmit(feedbackData);
-    }
-  };
 
   // Show feedback widget
   const showFeedback = () => {
-    if (shiply && isInitialized) {
-      shiply.show();
-    }
-  };
-
-  // Hide feedback widget
-  const hideFeedback = () => {
-    if (shiply && isInitialized) {
-      shiply.hide();
+    if (shiplyInstance && isInitialized) {
+      shiplyInstance.show();
+    } else if (error) {
+      console.error("Cannot show feedback: SDK not initialized or encountered an error.", error);
     }
   };
 

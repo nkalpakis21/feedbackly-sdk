@@ -132,19 +132,8 @@ export interface FeedbacklyInstance {
   isVisible(): boolean;
 }
 
-// React Component Props Interface
+// React Component Props Interface (for use within Provider)
 export interface ShiplyFeedbackProps {
-  apiKey: string;
-  websiteId?: string;
-  theme?: FeedbacklyConfig['theme'];
-  position?: FeedbacklyConfig['position'];
-  size?: FeedbacklyConfig['size'];
-  text?: FeedbacklyConfig['text'];
-  categories?: FeedbacklyConfig['categories'];
-  autoShow?: boolean;
-  autoShowDelay?: number;
-  onFeedbackSubmit?: (feedbackData: FeedbackData) => void;
-  onError?: (error: Error) => void;
   children?: React.ReactNode;
   className?: string;
   style?: React.CSSProperties;

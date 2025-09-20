@@ -153,10 +153,12 @@ export interface ShiplyFeedbackProps {
 // React Component Type
 export declare const ShiplyFeedback: React.FC<ShiplyFeedbackProps>;
 
+// Default export is the React component
+declare const ShiplyFeedbackDefault: React.FC<ShiplyFeedbackProps>;
+export default ShiplyFeedbackDefault;
+
 declare global {
   interface Window {
     Feedbackly: typeof FeedbacklyInstance;
   }
 }
-
-export default FeedbacklyInstance;

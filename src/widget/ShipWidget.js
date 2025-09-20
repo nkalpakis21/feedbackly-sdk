@@ -712,8 +712,8 @@ class FeedbackWidget {
    * Show widget
    */
   show() {
-    this.widgetElement.style.display = 'block';
-    this.triggerButton.style.display = 'none';
+    this.widgetElement.style.setProperty('display', 'block', 'important');
+    this.triggerButton.style.setProperty('display', 'none', 'important');
     this.isVisible = true;
 
     // Focus on first input
@@ -731,8 +731,8 @@ class FeedbackWidget {
    * Hide widget
    */
   hide() {
-    this.widgetElement.style.display = 'none';
-    this.triggerButton.style.display = 'flex';
+    this.widgetElement.style.setProperty('display', 'none', 'important');
+    this.triggerButton.style.setProperty('display', 'flex', 'important');
     this.isVisible = false;
     this.resetForm();
   }

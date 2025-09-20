@@ -18,6 +18,10 @@ module.exports = (env, argv) => {
       globalObject: 'this',
       clean: true,
     },
+    externals: {
+      'react': 'react',
+      'react-dom': 'react-dom'
+    },
     module: {
       rules: [
         {

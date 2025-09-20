@@ -19,6 +19,10 @@ module.exports = (env, argv) => {
     experiments: {
       outputModule: true,
     },
+    externals: {
+      'react': 'react',
+      'react-dom': 'react-dom'
+    },
     module: {
       rules: [
         {

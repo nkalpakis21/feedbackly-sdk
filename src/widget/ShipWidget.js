@@ -3,6 +3,7 @@ import {
   addEventListeners,
   removeEventListeners,
 } from '../utils/dom';
+import logger from '../utils/logger.js';
 
 /**
  * Feedback Widget Component
@@ -199,7 +200,7 @@ class FeedbackWidget {
       { value: 3, emoji: '😍', label: 'Great' },
     ];
 
-    ratingOptions.forEach((option) => {
+    ratingOptions.forEach(option => {
       const emojiButton = createElement('button', {
         className: 'Shiply-emoji-option',
         'data-rating': option.value,
@@ -305,7 +306,8 @@ class FeedbackWidget {
         this.feedbackTextarea.style.borderColor = '#3b82f6';
       },
       blur: () => {
-        this.feedbackTextarea.style.borderColor = this.config.theme?.borderColor || '#d1d5db';
+        this.feedbackTextarea.style.borderColor =
+          this.config.theme?.borderColor || '#d1d5db';
       },
     });
 
@@ -376,7 +378,8 @@ class FeedbackWidget {
         this.categorySelect.style.borderColor = '#3b82f6';
       },
       blur: () => {
-        this.categorySelect.style.borderColor = this.config.theme?.borderColor || '#d1d5db';
+        this.categorySelect.style.borderColor =
+          this.config.theme?.borderColor || '#d1d5db';
       },
     });
 
@@ -547,7 +550,6 @@ class FeedbackWidget {
     addEventListeners(document, this.eventListeners);
   }
 
-
   /**
    * Set rating
    */
@@ -561,7 +563,9 @@ class FeedbackWidget {
    * Update emoji display
    */
   updateEmojiDisplay() {
-    const emojiOptions = this.widgetElement.querySelectorAll('.Shiply-emoji-option');
+    const emojiOptions = this.widgetElement.querySelectorAll(
+      '.Shiply-emoji-option'
+    );
     emojiOptions.forEach(option => {
       const optionRating = parseInt(option.dataset.rating);
       if (optionRating === this.rating) {
@@ -580,7 +584,9 @@ class FeedbackWidget {
    * Highlight emoji option on hover
    */
   highlightEmojiOption(rating) {
-    const emojiOptions = this.widgetElement.querySelectorAll('.Shiply-emoji-option');
+    const emojiOptions = this.widgetElement.querySelectorAll(
+      '.Shiply-emoji-option'
+    );
     emojiOptions.forEach(option => {
       const optionRating = parseInt(option.dataset.rating);
       if (optionRating === rating) {
@@ -626,7 +632,7 @@ class FeedbackWidget {
     try {
       const feedbackData = {
         rating: this.rating,
-        feedback: this.feedbackText,
+        content: this.feedbackText,
         category: this.categorySelect ? this.categorySelect.value : null,
         url: window.location.href,
         userAgent: navigator.userAgent,
@@ -638,7 +644,7 @@ class FeedbackWidget {
       this.showThankYouMessage();
       this.resetForm();
     } catch (error) {
-      console.error('Failed to submit feedback:', error);
+      logger.error('Failed to submit feedback:', error);
       this.showErrorMessage();
     }
   }
@@ -699,7 +705,7 @@ class FeedbackWidget {
     if (this.categorySelect) {
       this.categorySelect.value = '';
     }
-    this.updateStarDisplay();
+    this.updateEmojiDisplay();
   }
 
   /**

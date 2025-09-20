@@ -2,6 +2,8 @@
  * TypeScript type definitions for Feedbackly SDK
  */
 
+import React from 'react';
+
 export interface FeedbacklyConfig {
   apiKey: string;
   websiteId: string;
@@ -129,6 +131,27 @@ export interface FeedbacklyInstance {
   isInitialized(): boolean;
   isVisible(): boolean;
 }
+
+// React Component Props Interface
+export interface ShiplyFeedbackProps {
+  apiKey: string;
+  websiteId?: string;
+  theme?: FeedbacklyConfig['theme'];
+  position?: FeedbacklyConfig['position'];
+  size?: FeedbacklyConfig['size'];
+  text?: FeedbacklyConfig['text'];
+  categories?: FeedbacklyConfig['categories'];
+  autoShow?: boolean;
+  autoShowDelay?: number;
+  onFeedbackSubmit?: (feedbackData: FeedbackData) => void;
+  onError?: (error: Error) => void;
+  children?: React.ReactNode;
+  className?: string;
+  style?: React.CSSProperties;
+}
+
+// React Component Type
+export declare const ShiplyFeedback: React.FC<ShiplyFeedbackProps>;
 
 declare global {
   interface Window {

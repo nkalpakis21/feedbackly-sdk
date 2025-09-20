@@ -6,4 +6,3 @@ export default ShiplyFeedback;
 
 // Also export as named export
 export { ShiplyFeedback };
-

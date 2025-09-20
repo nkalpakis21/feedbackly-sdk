@@ -24,6 +24,14 @@ module.exports = {
     'object-shorthand': 'error',
     'prefer-template': 'error',
   },
+  overrides: [
+    {
+      files: ['src/utils/logger.js'],
+      rules: {
+        'no-console': 'off',
+      },
+    },
+  ],
   globals: {
     window: 'readonly',
     document: 'readonly',

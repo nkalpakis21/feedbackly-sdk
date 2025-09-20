@@ -1,6 +1,7 @@
 /**
  * API Client for communicating with Shiply backend
  */
+import logger from '../utils/logger.js';
 class ApiClient {
   constructor(config) {
     this.config = config;
@@ -22,16 +23,22 @@ class ApiClient {
 
     // Check for environment variables to determine API URL
     // This works in both browser and Node.js environments
-    const isLocalDevelopment = 
-      (typeof process !== 'undefined' && process.env.NODE_ENV === 'development') ||
-      (typeof window !== 'undefined' && window.location.hostname === 'localhost') ||
-      (typeof window !== 'undefined' && window.location.hostname === '127.0.0.1') ||
-      (typeof window !== 'undefined' && window.location.hostname.includes('local'));
+    const isLocalDevelopment =
+      (typeof process !== 'undefined' &&
+        process.env.NODE_ENV === 'development') ||
+      (typeof window !== 'undefined' &&
+        window.location.hostname === 'localhost') ||
+      (typeof window !== 'undefined' &&
+        window.location.hostname === '127.0.0.1') ||
+      (typeof window !== 'undefined' &&
+        window.location.hostname.includes('local'));
 
     // Check for specific environment variable to use local API
-    const useLocalApi = 
-      (typeof process !== 'undefined' && process.env.USE_LOCAL_API === 'true') ||
-      (typeof window !== 'undefined' && window.location.search.includes('Shiply-local=true'));
+    const useLocalApi =
+      (typeof process !== 'undefined' &&
+        process.env.USE_LOCAL_API === 'true') ||
+      (typeof window !== 'undefined' &&
+        window.location.search.includes('Shiply-local=true'));
 
     if (isLocalDevelopment && useLocalApi) {
       return 'http://localhost:3000';
@@ -40,7 +47,6 @@ class ApiClient {
     // Default to production API
     return 'https://www.shiplyai.com';
   }
-
 
   /**
    * Submit feedback to the API
@@ -59,7 +65,7 @@ class ApiClient {
 
       return response;
     } catch (error) {
-      console.error('Failed to submit feedback:', error);
+      logger.error('Failed to submit feedback:', error);
       throw error;
     }
   }
@@ -83,11 +89,10 @@ class ApiClient {
 
       return response;
     } catch (error) {
-      console.error('Failed to track event:', error);
+      logger.error('Failed to track event:', error);
       // Don't throw for tracking events to avoid breaking user experience
     }
   }
-
 
   /**
    * Make HTTP request with timeout and error handling

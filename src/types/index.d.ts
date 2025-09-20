@@ -137,4 +137,3 @@ declare global {
 }
 
 export default FeedbacklyInstance;
-

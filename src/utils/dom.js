@@ -1,6 +1,7 @@
 /**
  * DOM utility functions
  */
+import logger from './logger.js';
 
 /**
  * Create a DOM element with attributes and styles
@@ -53,7 +54,7 @@ export function createElement(tagName, options = {}) {
 export function addEventListeners(element, events) {
   // Validate inputs
   if (!element || !events || typeof events !== 'object') {
-    console.warn('addEventListeners: Invalid element or events object');
+    logger.warn('addEventListeners: Invalid element or events object');
     return;
   }
 
@@ -62,13 +63,13 @@ export function addEventListeners(element, events) {
       if (typeof handler === 'function') {
         element.addEventListener(event, handler);
       } else {
-        console.warn(
+        logger.warn(
           `addEventListeners: Handler for event '${event}' is not a function`
         );
       }
     });
   } catch (error) {
-    console.error('Error adding event listeners:', error);
+    logger.error('Error adding event listeners:', error);
   }
 }
 
@@ -80,7 +81,7 @@ export function addEventListeners(element, events) {
 export function removeEventListeners(element, events) {
   // Validate inputs
   if (!element || !events || typeof events !== 'object') {
-    console.warn('removeEventListeners: Invalid element or events object');
+    logger.warn('removeEventListeners: Invalid element or events object');
     return;
   }
 
@@ -91,7 +92,7 @@ export function removeEventListeners(element, events) {
       }
     });
   } catch (error) {
-    console.error('Error removing event listeners:', error);
+    logger.error('Error removing event listeners:', error);
   }
 }
 

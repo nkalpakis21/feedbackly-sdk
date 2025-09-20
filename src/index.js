@@ -1,4 +1,4 @@
-import ShiplyFeedback from './react/ShiplyFeedback';
+import ShiplyFeedback from './react/ShiplyFeedback.jsx';
 import './styles/main.css';
 
 // Export the React component as default

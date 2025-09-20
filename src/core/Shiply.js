@@ -2,6 +2,7 @@ import ShipWidget from '../widget/ShipWidget';
 import ApiClient from '../api/ApiClient';
 import { validateConfig, mergeConfig } from '../utils/config';
 import { generateUserId, getSessionId } from '../utils/session';
+import logger from '../utils/logger.js';
 
 /**
  * Main Shiply SDK class
@@ -36,11 +37,11 @@ class Shiply {
 
       this.isInitialized = true;
 
-      console.log('Shiply SDK initialized successfully');
+      logger.log('Shiply SDK initialized successfully');
 
       return this;
     } catch (error) {
-      console.error('Failed to initialize Shiply SDK:', error);
+      logger.error('Failed to initialize Shiply SDK:', error);
       throw error;
     }
   }

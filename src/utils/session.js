@@ -68,4 +68,3 @@ export function clearAllData() {
   localStorage.removeItem(STORAGE_KEYS.USER_ID);
   clearSession();
 }
-
